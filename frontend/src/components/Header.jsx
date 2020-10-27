@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import menuContainer from "./menuContainer";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
 	// to hover menu dropdown
-	const [show, setShow] = useState(true);
-	const showDropdown = (e) => {
-		setShow(!show);
-	};
-	const hideDropdown = (e) => {
-		setShow(false);
-	};
+	// const [show, setShow] = useState(true);
+	// const showDropdown = (e) => {
+	// 	setShow(!show);
+	// };
+	// const hideDropdown = (e) => {
+	// 	setShow(false);
+	// };
 
 	const elmNavDropdown = () =>
 		menuContainer.map((elm, i) => (
@@ -21,13 +21,14 @@ const Header = () => {
 				id={elm.idTitle}
 				className="light-dropdown mx-auto"
 			>
-				{elm.subtitle.map((navDropdownItem, i) => (
-					<LinkContainer key={i} to={navDropdownItem.to}>
-						<NavDropdown.Item>
-							{navDropdownItem.sub}
-						</NavDropdown.Item>
-					</LinkContainer>
-				))}
+				{elm.subtitle &&
+					elm.subtitle.map((navDropdownItem, i) => (
+						<LinkContainer key={i} to={navDropdownItem.to}>
+							<NavDropdown.Item>
+								{navDropdownItem.sub}
+							</NavDropdown.Item>
+						</LinkContainer>
+					))}
 			</NavDropdown>
 		));
 
@@ -43,6 +44,11 @@ const Header = () => {
 								<Nav.Link>Trang chủ</Nav.Link>
 							</LinkContainer>
 							{elmNavDropdown()}
+							<LinkContainer to="/login">
+								<Nav.Link>
+									Đăng nhập
+								</Nav.Link>
+							</LinkContainer>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>
