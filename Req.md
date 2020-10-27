@@ -1,5 +1,6 @@
 # THIẾT KẾ HỆ THỐNG WEBSITE THƯ VIỆN SỐ
 > Tham khảo tại trang web [**Thư viện số Học viện Kỹ thuật Mật mã**](http://thuvienso.act.edu.vn)
+> Tham khảo thêm tại web tích hợp mã nguồn mở KOHA [https://demo.koha.vn/](https://demo.koha.vn/)
 
 > ## Chương 1. Phát triển website dựa trên NodeJS ở phía Server, ReactJS ở phía Client, sử dụng MongoDB làm cơ sở dữ liệu
 > ### 1.1. Giới thiệu về NodeJS, ReactJS
