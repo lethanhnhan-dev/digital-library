@@ -1,17 +1,19 @@
 import React from "react";
 import menuContainer from "./menuContainer";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/actions/userActions";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
-	// to hover menu dropdown
-	// const [show, setShow] = useState(true);
-	// const showDropdown = (e) => {
-	// 	setShow(!show);
-	// };
-	// const hideDropdown = (e) => {
-	// 	setShow(false);
-	// };
+	const dispatch = useDispatch();
+
+	const userLogin = useSelector((state) => state.userLogin);
+	const { userInfo } = userLogin;
+
+	const logoutHandler = () => {
+		dispatch(logout());
+	};
 
 	const elmNavDropdown = () =>
 		menuContainer.map((elm, i) => (
@@ -34,7 +36,11 @@ const Header = () => {
 
 	return (
 		<header>
-			<div className="logoBanner mx-auto">Logo</div>
+			<div className="m-auto logoBanner ">
+				<h1 style={{ textAlign: "center" }}>
+					Logo Thư viện số học viện kỹ thuật mật mã
+				</h1>
+			</div>
 			<Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect>
 				<Container>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -44,11 +50,27 @@ const Header = () => {
 								<Nav.Link>Trang chủ</Nav.Link>
 							</LinkContainer>
 							{elmNavDropdown()}
-							<LinkContainer to="/login">
-								<Nav.Link>
-									Đăng nhập
-								</Nav.Link>
-							</LinkContainer>
+							{userInfo ? (
+								<NavDropdown
+									title={userInfo.name}
+									id="username"
+								>
+									<LinkContainer to="/profile">
+										<NavDropdown.Item>
+											Thông tin tài khoản
+										</NavDropdown.Item>
+									</LinkContainer>
+									<NavDropdown.Item onClick={logoutHandler}>
+										Đăng xuất
+									</NavDropdown.Item>
+								</NavDropdown>
+							) : (
+								<LinkContainer to="/login">
+									<Nav.Link>
+										<i className="fas fa-user"></i> Đăng nhập
+									</Nav.Link>
+								</LinkContainer>
+							)}
 						</Nav>
 					</Navbar.Collapse>
 				</Container>

@@ -1,6 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 
+const TabElm = ({ eventKey, title, children }) => {
+	return (
+		<Tab eventKey={eventKey} title={title}>
+			{children}
+		</Tab>
+	);
+};
+
 const HomeScreen = () => {
 	const [key, setKey] = useState("newArrival");
 	return (
@@ -11,18 +19,13 @@ const HomeScreen = () => {
 				className="tabs-controlled"
 				onSelect={(k) => setKey(k)}
 			>
-				<Tab eventKey="newArrival" title="Mới nhất">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Ullam, repellendus nemo facilis porro natus repellat cumque
-					ut quisquam culpa dolore iusto mollitia ea soluta maiores
-					omnis dicta eos architecto vitae?
-				</Tab>
-				<Tab eventKey="mostSeen" title="Xem nhiều">
+				<TabElm eventKey="newArrival" title="Mới nhất">Hello</TabElm>
+				<TabElm eventKey="mostSeen" title="Xem nhiều">
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit.
 					Ipsam, laboriosam. Accusantium sequi consequatur nihil eius
 					asperiores a tempora nemo omnis! At quis perspiciatis
 					deleniti quos autem officiis aliquid omnis accusantium!
-				</Tab>
+				</TabElm>
 				<Tab eventKey="mostDownloaded" title="Download nhiều">
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit.
 					Adipisci ex quaerat earum cum neque possimus quis
