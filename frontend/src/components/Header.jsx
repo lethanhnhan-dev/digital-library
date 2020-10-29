@@ -1,11 +1,12 @@
 import React from "react";
 import menuContainer from "./menuContainer";
+import { withRouter } from "react-router-dom";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/actions/userActions";
 import { LinkContainer } from "react-router-bootstrap";
 
-const Header = () => {
+const Header = ({ history }) => {
 	const dispatch = useDispatch();
 
 	const userLogin = useSelector((state) => state.userLogin);
@@ -13,6 +14,7 @@ const Header = () => {
 
 	const logoutHandler = () => {
 		dispatch(logout());
+		history.push("/");
 	};
 
 	const elmNavDropdown = () =>
@@ -67,7 +69,8 @@ const Header = () => {
 							) : (
 								<LinkContainer to="/login">
 									<Nav.Link>
-										<i className="fas fa-user"></i> Đăng nhập
+										<i className="fas fa-user"></i> Đăng
+										nhập
 									</Nav.Link>
 								</LinkContainer>
 							)}
@@ -79,4 +82,4 @@ const Header = () => {
 	);
 };
 
-export default Header;
+export default withRouter(Header);
