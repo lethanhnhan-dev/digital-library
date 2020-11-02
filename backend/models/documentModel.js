@@ -1,14 +1,18 @@
 import mongoose from "mongoose";
+const { ObjectId } = mongoose;
 
 const documentSchema = mongoose.Schema(
 	{
-		title: {
+		name: {
 			type: String,
 			required: true,
 		},
 		description: {
 			type: String,
 			required: true,
+		},
+		docummentType: {
+			type: String,
 		},
 		keywords: {
 			type: String,
@@ -17,6 +21,12 @@ const documentSchema = mongoose.Schema(
 		photo: {
 			data: Buffer,
 			contentType: String,
+		},
+		uploadBy: { type: ObjectId, ref: "User", required: true },
+		category: {
+			type: ObjectId,
+			ref: "Category",
+			required: true,
 		},
 	},
 	{

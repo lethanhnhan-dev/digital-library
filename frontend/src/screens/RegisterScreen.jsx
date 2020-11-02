@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/actions/userActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import { Link } from "react-router-dom";
 
 const RegisterScreen = ({ location, history }) => {
 	const [name, setName] = useState("");
@@ -80,6 +81,20 @@ const RegisterScreen = ({ location, history }) => {
 							onChange={(e) => setConfirmPassword(e.target.value)}
 						/>
 					</Form.Group>
+					<Row className="py-3">
+						<Col>
+							Bạn chưa có tài khoản?{" "}
+							<Link
+								to={
+									redirect
+										? `/login?redirect=${redirect}`
+										: "/login"
+								}
+							>
+								Đăng nhập ngay
+							</Link>
+						</Col>
+					</Row>
 					<Button variant="primary" type="submit" block>
 						Tạo tài khoản ngay
 					</Button>

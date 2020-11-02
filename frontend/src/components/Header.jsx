@@ -57,7 +57,13 @@ const Header = ({ history }) => {
 									title={userInfo.name}
 									id="username"
 								>
-									<LinkContainer to="/profile">
+									<LinkContainer
+										to={
+											userInfo.isAdmin
+												? "/admin/profile"
+												: "/profile"
+										}
+									>
 										<NavDropdown.Item>
 											Thông tin tài khoản
 										</NavDropdown.Item>

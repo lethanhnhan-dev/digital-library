@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+const { ObjectId } = mongoose;
 
 const userSchema = mongoose.Schema(
 	{
@@ -20,6 +21,14 @@ const userSchema = mongoose.Schema(
 			type: Boolean,
 			required: true,
 			default: false,
+		},
+		document: {
+			uploaded: [
+				{
+					type: ObjectId,
+					ref: "Document",
+				},
+			],
 		},
 	},
 	{

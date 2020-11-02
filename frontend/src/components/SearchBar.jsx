@@ -7,8 +7,9 @@ import {
 	FormControl,
 	Row,
 } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
-const SearchBar = () => {
+const SearchBar = ({ history }) => {
 	return (
 		<div className="my-4 w-100">
 			<Container>
@@ -48,15 +49,16 @@ const SearchBar = () => {
 							</Row>
 						</Form>
 					</Col>
-					<Col>
-						<Form inline className="mr-2">
-							<Form.Group>
-								<Form.File
-									as={Button}
-									id="exampleFormControlFile1" isValid
-								></Form.File>
-							</Form.Group>
-						</Form>
+					<Col className="my-2">
+						<Button
+							variant="primary"
+							block
+							onClick={() => {
+								history.push("/upload");
+							}}
+						>
+							Đóng góp tài liệu
+						</Button>
 					</Col>
 				</Row>
 			</Container>
@@ -64,4 +66,4 @@ const SearchBar = () => {
 	);
 };
 
-export default SearchBar;
+export default withRouter(SearchBar);
