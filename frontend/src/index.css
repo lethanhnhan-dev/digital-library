@@ -16,11 +16,15 @@
 .dropdown-menu a.dropdown-item {
 	color: black !important;
 }
-.tabs-controlled a{
-background-color: #3e3f3a !important;
-color: white !important;
+.tabs-controlled a {
+	background-color: #3e3f3a !important;
+	color: white !important;
 }
-.tabs-controlled a.active{
+.tabs-controlled a.active {
 	background-color: #707070 !important;
 	color: white !important;
-	}
+}
+
+.text-dark.nav-link, .text-dark.nav-link.active {
+	color: black !important;
+}

@@ -9,11 +9,14 @@ import {
 	userUpdateProfileReducer,
 } from "./redux/reduces/userReducers";
 
+import { createCategoryReducer } from "./redux/reduces/categoryReducers";
+
 const reducer = combineReducers({
 	userLogin: userLoginReducer,
 	userRegister: userRegisterReducer,
 	userDetails: userDetailsReducer,
 	userUpdateProfile: userUpdateProfileReducer,
+	createCategory: createCategoryReducer
 });
 
 const userInfoFromLocalStorage = localStorage.getItem("userInfo")
