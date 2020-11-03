@@ -3,7 +3,7 @@ import { Button, Card, Form } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../Loader";
 import Message from "../Message";
-import { create } from "../../redux/actions/categoryActions";
+import { createCategoryAction } from "../../redux/actions/categoryActions";
 
 const CreateCategory = () => {
 	const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const CreateCategory = () => {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		dispatch(create(categoryName));
+		dispatch(createCategoryAction(categoryName));
 		setCategoryName("");
 	};
 

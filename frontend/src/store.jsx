@@ -9,14 +9,20 @@ import {
 	userUpdateProfileReducer,
 } from "./redux/reduces/userReducers";
 
-import { createCategoryReducer } from "./redux/reduces/categoryReducers";
+import {
+	createCategoryReducer,
+	getAllCategoriesReducer,
+	editCategoryByIdReducer,
+} from "./redux/reduces/categoryReducers";
 
 const reducer = combineReducers({
 	userLogin: userLoginReducer,
 	userRegister: userRegisterReducer,
 	userDetails: userDetailsReducer,
 	userUpdateProfile: userUpdateProfileReducer,
-	createCategory: createCategoryReducer
+	createCategory: createCategoryReducer,
+	getAllCategories: getAllCategoriesReducer,
+	editCategoryById: editCategoryByIdReducer,
 });
 
 const userInfoFromLocalStorage = localStorage.getItem("userInfo")

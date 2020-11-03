@@ -1,7 +1,7 @@
 import * as categoryTypes from "../constants/categoryConstants";
 import axios from "axios";
 
-export const create = (name) => async (dispatch, getState) => {
+export const createCategoryAction = (name) => async (dispatch, getState) => {
 	try {
 		dispatch({ type: categoryTypes.CATEGORY_CREATE_REQUEST });
 
@@ -34,17 +34,11 @@ export const create = (name) => async (dispatch, getState) => {
 	}
 };
 
-export const getAllCategories = () => async (dispatch) => {
+export const getAllCategoriesAction = () => async (dispatch) => {
 	try {
 		dispatch({ type: categoryTypes.CATEGORIES_GET_ALL_REQUEST });
 
-		const config = {
-			headers: {
-				"Content-Type": "application/json",
-			},
-		};
-
-		const { data } = await axios.get("/api/categoies", config);
+		const { data } = await axios.get("/api/categories");
 		dispatch({
 			type: categoryTypes.CATEGORIES_GET_ALL_SUCCESS,
 			payload: data,
@@ -86,17 +80,52 @@ export const getCategoryById = (id) => async (dispatch) => {
 	}
 };
 
-export const editCategoryById = (id, name) => async (dispatch) => {
+export const editCategoryByIdAction = (id, name) => async (
+	dispatch,
+	getState,
+) => {
 	try {
 		dispatch({ type: categoryTypes.CATEGORY_EDIT_BY_ID_REQUEST });
+
+		const { userLogin } = getState();
 
 		const config = {
 			headers: {
 				"Content-Type": "application/json",
+				Authorization: `Bearer ${userLogin.userInfo.token}`,
 			},
 		};
 
-		const { data } = await axios.put(`/api/categoies/${id}`, config);
+		const { data } = await axios.put(`/api/categories/${id}`, name, config);
+		dispatch({
+			type: categoryTypes.CATEGORY_EDIT_BY_ID_SUCCESS,
+			payload: data,
+		});
+	} catch (error) {
+		dispatch({
+			type: categoryTypes.CATEGORY_EDIT_BY_ID_FAIL,
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message,
+		});
+	}
+};
+
+export const deleteCategoryByIdAction = (id) => async (dispatch, getState) => {
+	try {
+		dispatch({ type: categoryTypes.CATEGORY_EDIT_BY_ID_REQUEST });
+
+		const { userLogin } = getState();
+
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${userLogin.userInfo.token}`,
+			},
+		};
+
+		const { data } = await axios.delete(`/api/categories/${id}`, config);
 		dispatch({
 			type: categoryTypes.CATEGORY_EDIT_BY_ID_SUCCESS,
 			payload: data,

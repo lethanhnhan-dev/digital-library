@@ -54,7 +54,7 @@ const AdminProfileScreen = ({ location, history }) => {
 											eventKey="editCategory"
 											className="text-dark"
 										>
-											Chinh sua danh muc tai lieu
+											Chỉnh sửa danh mục tài liệu
 										</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
