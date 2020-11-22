@@ -83,7 +83,7 @@ const AdminProfileScreen = ({ location, history }) => {
 										<EditCategory />
 									</Tab.Pane>
 									<Tab.Pane eventKey="addUserAccount">
-										3
+										Thêm tài khoản cho sinh viên
 									</Tab.Pane>
 								</Tab.Content>
 							</Col>

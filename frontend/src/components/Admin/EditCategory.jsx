@@ -7,7 +7,7 @@ import Message from "../Message";
 import {
 	getAllCategoriesAction,
 	editCategoryByIdAction,
-	deleteCategoryByIdAction
+	deleteCategoryByIdAction,
 } from "../../redux/actions/categoryActions";
 import { useEffect } from "react";
 
@@ -28,7 +28,7 @@ const EditCategory = () => {
 	useEffect(() => {
 		dispatch(getAllCategoriesAction());
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [getAllCategoriesAction, success]);
+	}, [success]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -89,7 +89,18 @@ const EditCategory = () => {
 								</Button>
 							</Col>
 							<Col md={6}>
-								<Button variant="danger" type="button" block onClick={() => {dispatch(deleteCategoryByIdAction(categoryNameId))}}>
+								<Button
+									variant="danger"
+									type="button"
+									block
+									onClick={() => {
+										dispatch(
+											deleteCategoryByIdAction(
+												categoryNameId,
+											),
+										);
+									}}
+								>
 									Xoá danh mục
 								</Button>
 							</Col>
@@ -103,9 +114,7 @@ const EditCategory = () => {
 						</Message>
 					)}
 					{success && (
-						<Message variant="success">
-							{JSON.stringify(message)}
-						</Message>
+						<Message variant="success">{message.message}</Message>
 					)}
 				</Card.Body>
 			)}

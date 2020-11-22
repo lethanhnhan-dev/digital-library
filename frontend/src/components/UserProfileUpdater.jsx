@@ -34,6 +34,10 @@ const AdminProfileScreen = ({ history, userInfo, userDetails, col }) => {
 				setEmail(user.email);
 			}
 		}
+
+		return function cleanup() {
+			return null;
+		};
 	}, [dispatch, history, userInfo, user, success]);
 
 	const submitHandler = (e) => {

@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCategoriesAction } from "./redux/actions/categoryActions";
 import Routes from "./Routes";
+import Loader from "./components/Loader";
 
 const App = () => {
+	const dispatch = useDispatch();
+	const getAllCategories = useSelector((state) => state.getAllCategories);
+	const { categories, loading } = getAllCategories;
+	useEffect(() => {
+		dispatch(getAllCategoriesAction());
+		return function clear() {
+			return null;
+		};
+		// eslint-disable-next-line
+	}, []);
 	return (
 		<Router>
 			<Header />
@@ -16,38 +29,22 @@ const App = () => {
 						<Col md="2">
 							<Card bg="secondary">
 								<Card.Header>Tài liệu thư viện số</Card.Header>
-								<ListGroup variant="flush" bg="secondary">
-									<ListGroup.Item variant="dark">
-										Crypt Infomation Security
-									</ListGroup.Item>
-									<ListGroup.Item variant="dark">
-										An toàn thông tin
-									</ListGroup.Item>
-									<ListGroup.Item variant="dark">
-										Điện tử - viễn thông
-									</ListGroup.Item>
-									<ListGroup.Item variant="dark">
-										Công nghệ thông tin
-									</ListGroup.Item>
-									<ListGroup.Item variant="dark">
-										Khoa cơ bản
-									</ListGroup.Item>
-									<ListGroup.Item variant="dark">
-										Lý luận chính trị
-									</ListGroup.Item>
-									<ListGroup.Item variant="dark">
-										Ngoạn ngữ
-									</ListGroup.Item>
-									<ListGroup.Item variant="dark">
-										GDQP - GDTC
-									</ListGroup.Item>
-									<ListGroup.Item variant="dark">
-										Đồ án - Tiểu luận
-									</ListGroup.Item>
-									<ListGroup.Item variant="dark">
-										Tài liệu tham khảo khác
-									</ListGroup.Item>
-								</ListGroup>
+
+								{loading ? (
+									<Loader className="mx-auto my-4" />
+								) : (
+									<ListGroup variant="flush" bg="secondary">
+										{categories &&
+											categories.map((category) => (
+												<ListGroup.Item
+													variant="dark"
+													key={category._id}
+												>
+												&#9659; {category.name}
+												</ListGroup.Item>
+											))}
+									</ListGroup>
+								)}
 							</Card>
 						</Col>
 						<Col md="8">
